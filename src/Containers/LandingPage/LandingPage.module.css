@@ -1,0 +1,9 @@
+.SignInUpWrapper {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  top: 0;
+  z-index: 4;
+  transition: background 0.3s ease-in-out;
+}
