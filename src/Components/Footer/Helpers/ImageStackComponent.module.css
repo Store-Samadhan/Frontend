@@ -1,0 +1,21 @@
+.Wrapper {
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+.Img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+.NormalState {
+  opacity: 1;
+}
+.HoverState {
+  opacity: 0;
+}
