@@ -1,0 +1,33 @@
+.Wrapper {
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(
+    130.01% 159.2% at 36.78% -49.54%,
+    #a5e4ff 0%,
+    #f3f3f3 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.Container {
+  width: 100%;
+  object-fit: contain;
+}
+.Logo {
+  width: 18rem;
+  object-fit: contain;
+  margin-top: 3.3rem;
+}
+.Heading {
+  font-weight: 400;
+  font-size: var(--font-45);
+  line-height: 130%;
+  text-align: center;
+  color: var(--sec-black);
+  max-width: 72rem;
+}
+.ButtonWrapper {
+  display: flex;
+}
