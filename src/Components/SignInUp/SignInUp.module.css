@@ -1,0 +1,75 @@
+.Wrapper {
+  height: 100vh;
+  min-height: 100%;
+  width: fit-content;
+  position: fixed;
+  right: 0px;
+  background-color: white;
+  z-index: 5;
+  padding: 6rem;
+  padding-right: 10rem;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  transition: transform 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.Title {
+  font-size: var(--font-26);
+  font-weight: 500;
+  color: var(--black);
+}
+
+.Form {
+  width: 30rem;
+  margin-top: 3rem;
+}
+
+.RadioWrapper {
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.SignInUpButton {
+  margin-top: 2.2rem;
+}
+.BottomSecWrapper {
+  margin-top: 3.2rem;
+  width: 35rem;
+}
+
+@media only screen and (min-width: 1600px) {
+  .Wrapper {
+    padding-right: calc(40vw - 35rem);
+  }
+}
+
+@media only screen and (max-width: 525px) {
+  .Wrapper {
+    padding: calc(2rem + 3vw);
+    padding-bottom: 5rem;
+    padding-top: 5rem;
+    transition: none;
+  }
+  .Form {
+    width: fit-content;
+  }
+  .BottomSecWrapper {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .Wrapper {
+    padding: calc(1rem + 5vw);
+    padding-bottom: 5rem;
+    padding-top: 5rem;
+  }
+}
