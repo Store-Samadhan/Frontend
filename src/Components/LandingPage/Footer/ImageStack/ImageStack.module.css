@@ -1,0 +1,26 @@
+.Wrapper {
+  position: relative;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.Wrapper a {
+  text-decoration: none;
+  color: var(--black);
+}
+.Img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+.NormalState {
+  opacity: 1;
+}
+.HoverState {
+  opacity: 0;
+}
