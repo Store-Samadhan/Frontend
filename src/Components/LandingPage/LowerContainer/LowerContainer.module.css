@@ -1,0 +1,42 @@
+.Wrapper {
+  width: 100%;
+  min-height: 95.9rem;
+  padding-top: 18.1rem;
+  display: flex;
+  gap: 6rem;
+  position: relative;
+}
+.LowerContainerWrapper {
+  position: relative;
+  width: 95.8rem;
+  height: 67.9rem;
+  background: #eefaff;
+  border: 5px solid #444444;
+  border-radius: 100px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0;
+}
+.LowerContainerStore {
+  height: 61.4rem;
+  object-fit: contain;
+  position: absolute;
+  top: 11rem;
+  left: -9.8rem;
+}
+.Heading {
+  font-weight: 400;
+  font-size: var(--font-45);
+  line-height: 130%;
+  text-align: center;
+  color: var(--sec-black);
+  max-width: 34.7rem;
+  margin-top: -4.5rem;
+}
+.LowerDots {
+  position: absolute;
+  top: 53.2rem;
+  right: 0;
+  width: 14.3rem;
+  object-fit: contain;
+}
