@@ -1,0 +1,29 @@
+.ToastBody {
+  font-family: "Poppins", sans-serif;
+  font-size: var(--font-15);
+}
+
+.Wrapper {
+  position: relative;
+  height: fit-content;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.BgLine {
+  position: absolute;
+  margin-top: -11rem;
+  margin-left: -3rem;
+  width: 95%;
+  max-width: 145rem;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+@media (min-width: 1600px) {
+  .BgLine {
+    margin-left: calc(50% - 80rem);
+  }
+}
