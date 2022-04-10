@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styles from "./LowerContainer.module.css";
 import Star from "../../../Assets/General/Star.svg";
 import TempStore from "../../../Assets/General/TempStoreImage.jpg";
+import { useNavigate } from "react-router-dom";
 
 let tempData = [];
 for (let i = 0; i < 10; i++) {
@@ -18,6 +19,8 @@ for (let i = 0; i < 10; i++) {
 }
 
 const LowerContainer = ({ searchResults = tempData }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.Wrapper}>
       <h2>{searchResults.length} Results Found</h2>
@@ -25,7 +28,13 @@ const LowerContainer = ({ searchResults = tempData }) => {
         {searchResults &&
           searchResults.map((result, index) => {
             return (
-              <div className={styles.ContainerWrapper} key={index}>
+              <div
+                className={styles.ContainerWrapper}
+                key={index}
+                onClick={() => {
+                  navigate(`/s/${result.id}`);
+                }}
+              >
                 <div className={styles.ImageWrapper}>
                   {result.image ? (
                     <img src={result.image} alt="image" />
@@ -37,10 +46,19 @@ const LowerContainer = ({ searchResults = tempData }) => {
                   <h3>{result.name}</h3>
                   <div className={styles.ChargesReviewWrapper}>
                     <div>
-                      {result.price ? (
+                      {result.pricing ? (
                         <>
-                          <span>₹{result.price}</span>
-                          <span> /{result.priceFor}</span>
+                          <span>
+                            ₹
+                            {parseInt(
+                              result.pricing.data
+                                .map((item) => {
+                                  return item.price;
+                                })
+                                .reduce((acc, v, i, a) => acc + v / a.length, 0)
+                            )}
+                          </span>
+                          <span> /Boxes</span>
                         </>
                       ) : (
                         <>
@@ -49,8 +67,8 @@ const LowerContainer = ({ searchResults = tempData }) => {
                       )}
                     </div>
                     <div>
-                      {result.rating ? (
-                        <span>{result.rating}</span>
+                      {result.ratings ? (
+                        <span>{result.ratings.avgRating}</span>
                       ) : (
                         <span>-</span>
                       )}
