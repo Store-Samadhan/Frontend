@@ -22,9 +22,10 @@ In this high-moving life where we have to move from one place to another for job
 
 ### Storage Provider
 
-- When a storage provider register, th
-  ey required to enter some essential details like PAN number etc for security purposes.
-- They can enter the amount per box and other information like address, phone number etc
+- When a storage provider register, they required to enter some essential details like PAN number etc for security purposes.
+- They can decide the price for different sizes of boxes, can edit their tags to be searched by users.
+- They can check their bookings and the revenue they have made using these bookings
+- They can update their profile section details including their embedded Url,address, contact number etc.
 
 ## Development Setup
 

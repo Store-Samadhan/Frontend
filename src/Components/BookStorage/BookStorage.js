@@ -32,6 +32,14 @@ function BookStorage({ storeData }) {
 
   const booksStorageFun = async (e) => {
     e.preventDefault();
+    if (formData.boxes < 1) {
+      notify("Please select atleast one box", "error");
+      return;
+    }
+    if (formData.duration < 1 || formData.duration > 12) {
+      notify("Please select duration between 1 to 12 weeks", "error");
+      return;
+    }
     try {
       const data = await paymentInitialization(
         userData.accessToken,
@@ -106,11 +114,7 @@ function BookStorage({ storeData }) {
               type="number"
               value={formData.boxes}
               onChange={(e) => {
-                if (e.target.value > 0) {
-                  setFormData({ ...formData, boxes: e.target.value });
-                } else {
-                  notify("Please enter a valid number");
-                }
+                setFormData({ ...formData, boxes: e.target.value });
               }}
               min="1"
             />
@@ -124,11 +128,7 @@ function BookStorage({ storeData }) {
               type="number"
               value={formData.duration}
               onChange={(e) => {
-                if (e.target.value > 12 || e.target.value < 1) {
-                  notify("Duration should be between 1 and 12 weeks");
-                } else {
-                  setFormData({ ...formData, duration: e.target.value });
-                }
+                setFormData({ ...formData, duration: e.target.value });
               }}
               min="1"
               max="12"
