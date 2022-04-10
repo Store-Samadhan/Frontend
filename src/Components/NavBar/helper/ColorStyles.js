@@ -278,6 +278,7 @@ export const valueSelectStyles = {
     borderRadius: "1rem",
     borderTopLeftRadius: "0",
     borderBottomLeftRadius: "0",
+    color: "var(--pure-white)",
     ":visited": {
       border: "1px solid var(--pure-white)",
     },
@@ -355,5 +356,9 @@ export const valueSelectStyles = {
     "::-webkit-scrollbar": {
       display: "none",
     },
+  }),
+  input: (styles) => ({
+    ...styles,
+    color: "var(--pure-white)",
   }),
 };
