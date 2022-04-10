@@ -183,7 +183,7 @@ const App = () => {
                 <>
                   <Route
                     exact
-                    path="storage/:id"
+                    path="s/:id"
                     element={<StorageInfoPage />}
                   />
                   <Route exact path="profile/*" element={<Profile />} />
