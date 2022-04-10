@@ -4,6 +4,11 @@
 
 https://store-samadhan.netlify.app/
 
+
+## Backend URL
+
+https://store-samadhan-backend.centralindia.cloudapp.azure.com/api-explorer/
+
 ## Figma URL
 
 https://www.figma.com/file/LzGhPtx8m6JbajT56UhgaS/Store-Samadhan-UI
