@@ -11,8 +11,12 @@ import Button from "./../../../Button";
 import { ReactComponent as PlusImg } from "../../../../Assets/Profile/Plus.svg";
 import EditableTable from "./../../../Table/EdiableTable";
 import notify from "./../../../../Utils/Helpers/notifyToast";
+import { CLOUD_URL } from "../../../../Utils/Constants/APIConstants";
+import { updateStorage } from "./../../../../Services/storage.service";
+import { UPDATE_USER_DATA } from "./../../../../Redux/ActionTypes";
 
 function PersonalInfoSec() {
+  const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer.userData);
   const [localeUserData, setLocaleUserData] = useState({ ...userData });
 
@@ -83,6 +87,60 @@ function PersonalInfoSec() {
     }
   }, [userData, localeUserData.tags?.length]);
 
+  const saveUpdatedData = async () => {
+    console.log(files);
+    if (
+      files.filter((file) => file.serverId === !null || file.source === !null)
+        .length > 0
+    ) {
+      notify("Please wait for all images to be uploaded", "error");
+      return;
+    }
+
+    try {
+      if (userData.isStorage) {
+        const updatedData = {
+          ...localeUserData,
+          pricing: {
+            columns: columsData,
+            data: tableData,
+          },
+          images: files.map((file) => file.serverId || file.source),
+        };
+        console.log(files);
+
+        let dataToUpload = JSON.parse(JSON.stringify(updatedData));
+        delete dataToUpload.isStorage;
+        delete dataToUpload.uid;
+        delete dataToUpload.accessToken;
+
+        console.log(dataToUpload);
+        const responseData = await updateStorage(
+          dataToUpload,
+          userData.accessToken
+        );
+        dispatch({
+          type: UPDATE_USER_DATA,
+          data: updatedData,
+        });
+        console.log(responseData);
+      }
+
+      // dispatch({
+      //   type: UPDATE_PROFILE_DATA,
+      //   value: updatedData,
+      // });
+      // dispatch({
+      //   type: UPDATE_PROFILE_POPUP_STATE,
+      //   value: true,
+      // });
+      // notify("Successfully updated profile", "success");
+      notify("Profile Updated Successfully", "Success");
+    } catch (err) {
+      notify("Failed to update profile", "Error");
+    }
+  };
+
   return (
     <div className={styles.Wrapper}>
       <div className={styles.TopSec}>
@@ -100,7 +158,7 @@ function PersonalInfoSec() {
           <Button
             name={PROFILE_DATA.personalInfoSec.update}
             onClick={() => {
-              notify("Profile Updated Successfully", "Success");
+              saveUpdatedData();
             }}
             primaryColor="var(--primary-orange)"
             wrapperClass={styles.UpdateBtn}
@@ -117,7 +175,7 @@ function PersonalInfoSec() {
               onupdatefiles={setFiles}
               allowMultiple={true}
               maxFiles={3}
-              server="http://localhost:9090/images"
+              server={CLOUD_URL}
               name="files"
               labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
               // onprocessfile={(err, file) => {
@@ -128,8 +186,8 @@ function PersonalInfoSec() {
         )}
         <div className={styles.KeyValuePairs}>
           {(localeUserData.isStorage
-            ? PROFILE_DATA.personalInfoSec.feilds.slice(0, 4)
-            : PROFILE_DATA.personalInfoSec.feilds.slice(0, 3)
+            ? PROFILE_DATA.personalInfoSec.feilds.slice(0, 8)
+            : PROFILE_DATA.personalInfoSec.feilds.slice(0, 5)
           ).map((feild, index) => {
             return (
               <div className={styles.KeyValuePair} key={index}>
@@ -289,74 +347,104 @@ function PersonalInfoSec() {
           <h4 className={styles.AddressTitle}>
             {PROFILE_DATA.personalInfoSec.addresses}
           </h4>
-          <div className={styles.AddressListWrapper}>
-            {localeUserData.addresses?.map((address, index) => {
-              return (
-                <div className={styles.Address} key={index}>
-                  <textarea
-                    className={styles.AddressLine}
-                    autoComplete="address-line1"
-                    onChange={(e) => {
-                      setLocaleUserData({
-                        ...localeUserData,
-                        addresses: [
-                          ...localeUserData.addresses.slice(0, index),
-                          {
-                            ...localeUserData.addresses[index],
-                            address: e.target.value,
-                          },
-                          ...localeUserData.addresses.slice(index + 1),
-                        ],
-                      });
-                    }}
-                    value={address.address}
-                  />
-                  <input
-                    className={styles.Pincode}
-                    maxLength={6}
-                    autoComplete="postal-code"
-                    onChange={(e) => {
-                      setLocaleUserData({
-                        ...localeUserData,
-                        addresses: [
-                          ...localeUserData.addresses.slice(0, index),
-                          {
-                            ...localeUserData.addresses[index],
-                            pincode: e.target.value,
-                          },
-                          ...localeUserData.addresses.slice(index + 1),
-                        ],
-                      });
-                    }}
-                    value={address.pincode}
-                  />
-                </div>
-              );
-            })}
-            <Button
-              name="Add Address"
-              primaryColor={`var(--ter-black)`}
-              inverted
-              hoverBgColor={`var(--white)`}
-              wrapperClass={styles.AddAddressBtn}
-              withIcon
-              IconComp={PlusImg}
-              onClick={() => {
-                setLocaleUserData({
-                  ...localeUserData,
-                  addresses: localeUserData.addresses
-                    ? [
-                        ...localeUserData.addresses,
-                        {
-                          address: "",
-                          pincode: "",
-                        },
-                      ]
-                    : [{ address: "", pincode: "" }],
-                });
-              }}
-            />
-          </div>
+          {userData.isStorage ? (
+            <div className={styles.Address}>
+              <textarea
+                className={styles.AddressLine}
+                autoComplete="address-line1"
+                onChange={(e) => {
+                  setLocaleUserData({
+                    ...localeUserData,
+                    address: e.target.value,
+                  });
+                }}
+                value={localeUserData.address}
+              />
+              <input
+                className={styles.Pincode}
+                maxLength={6}
+                autoComplete="postal-code"
+                onChange={(e) => {
+                  setLocaleUserData({
+                    ...localeUserData,
+                    pincode: parseInt(e.target.value),
+                  });
+                }}
+                value={localeUserData.pincode}
+              />
+            </div>
+          ) : (
+            <>
+              <div className={styles.AddressListWrapper}>
+                {localeUserData.addresses?.map((address, index) => {
+                  return (
+                    <div className={styles.Address} key={index}>
+                      <textarea
+                        className={styles.AddressLine}
+                        autoComplete="address-line1"
+                        onChange={(e) => {
+                          setLocaleUserData({
+                            ...localeUserData,
+                            addresses: [
+                              ...localeUserData.addresses.slice(0, index),
+                              {
+                                ...localeUserData.addresses[index],
+                                address: e.target.value,
+                              },
+                              ...localeUserData.addresses.slice(index + 1),
+                            ],
+                          });
+                        }}
+                        value={address.address}
+                      />
+                      <input
+                        className={styles.Pincode}
+                        maxLength={6}
+                        autoComplete="postal-code"
+                        onChange={(e) => {
+                          setLocaleUserData({
+                            ...localeUserData,
+                            addresses: [
+                              ...localeUserData.addresses.slice(0, index),
+                              {
+                                ...localeUserData.addresses[index],
+                                pincode: e.target.value,
+                              },
+                              ...localeUserData.addresses.slice(index + 1),
+                            ],
+                          });
+                        }}
+                        value={address.pincode}
+                      />
+                    </div>
+                  );
+                })}
+                <Button
+                  name="Add Address"
+                  primaryColor={`var(--ter-black)`}
+                  inverted
+                  hoverBgColor={`var(--white)`}
+                  wrapperClass={styles.AddAddressBtn}
+                  withIcon
+                  IconComp={PlusImg}
+                  onClick={() => {
+                    setLocaleUserData({
+                      ...localeUserData,
+                      addresses: localeUserData.addresses
+                        ? [
+                            ...localeUserData.addresses,
+                            {
+                              address: "",
+                              pincode: "",
+                            },
+                          ]
+                        : [{ address: "", pincode: "" }],
+                    });
+                  }}
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
