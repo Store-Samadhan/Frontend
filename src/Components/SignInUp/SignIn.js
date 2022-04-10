@@ -13,6 +13,8 @@ import BottomText from "./Helpers/BottomText";
 import { signInData } from "../../Utils/Constants/StaticData";
 import { validateEmail } from "./Helpers/ValidateEmail";
 import notify from "../../Utils/Helpers/notifyToast";
+import { signInUser } from "../../Services/signInUp.service";
+import { fetchAndSetUserData } from "./Helpers/updateState";
 
 function SignIn() {
   const location = useLocation();
@@ -27,6 +29,28 @@ function SignIn() {
     e.preventDefault();
     const inputValidation = handleDataValidation();
     const elements = formRef.current.elements;
+
+    if (inputValidation) {
+      setIsDisabled(true);
+      const signinStatus = await signInUser({
+        email: elements.SignInEmail.value,
+        password: elements.SignInPassword.value,
+      });
+
+      if (signinStatus.status) {
+        await fetchAndSetUserData(
+          signinStatus.accessToken,
+          signinStatus.uid,
+          dispatch,
+          navigate,
+          signinStatus.message
+        );
+      } else {
+        notify(signinStatus.message, "error");
+      }
+
+      setIsDisabled(false);
+    }
   };
 
   const handleDataValidation = () => {
