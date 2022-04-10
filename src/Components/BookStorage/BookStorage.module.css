@@ -1,0 +1,101 @@
+.Wrapper {
+  background: var(--pure-white);
+  padding: 3rem;
+  border-radius: 0.7rem;
+  width: 45rem;
+  height: fit-content;
+  max-height: 85vh;
+  overflow: scroll;
+
+  display: flex;
+  flex-direction: column;
+  grid-gap: 3rem;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.Wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.Title {
+  font-size: var(--font-24);
+  font-weight: 500;
+  color: var(--sec-black);
+}
+
+.LowerWrapper {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 2rem;
+}
+
+.LowerWrapper * {
+  font-size: var(--font-16);
+}
+
+.FormWrapper {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5rem;
+}
+.KeyValueWrapper,
+.ReceiptKeyValueWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Key,
+.Value {
+  color: var(--sec-black);
+}
+
+.Value {
+  text-align: end;
+  text-align: end;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1rem;
+  outline: 1px solid #cccccc;
+  border: none;
+  height: fit-content;
+  width: 23rem;
+}
+
+.Select {
+  width: 23rem;
+  font-size: var(--font-16) !important;
+  padding: 0rem 2rem;
+  border-radius: 1rem !important;
+  outline-color: #cccccc;
+}
+
+.ReceiptWrapper {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.4rem;
+}
+
+.ReceiptKey {
+  font-size: var(--font-16);
+  color: var(--sec-black);
+}
+
+.ReceiptValue {
+  font-size: var(--font-16);
+  color: var(--sec-black);
+  font-weight: 500;
+}
+
+.ReceiptHr {
+  width: 100%;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1.2rem 0;
+  padding: 0;
+}
