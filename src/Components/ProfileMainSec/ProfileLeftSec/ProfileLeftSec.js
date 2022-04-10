@@ -36,7 +36,7 @@ function ProfileLeftSec() {
           wrapperClass={styles.BackButton}
           primaryColor="var(--sec-black)"
           onClick={() => {
-            navigate("/signup");
+            navigate("/");
           }}
           inverted
           fullWidth

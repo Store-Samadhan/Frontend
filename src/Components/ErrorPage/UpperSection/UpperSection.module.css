@@ -1,0 +1,27 @@
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10.8rem;
+}
+.ErrorImage {
+  width: 66.6rem;
+  height: 27.3rem;
+  object-fit: contain;
+}
+.ErrorText {
+  padding-top: 4.8rem;
+  max-width: 73rem;
+  margin: 0 auto;
+  width: 95%;
+  font-size: var(--font-24);
+  text-align: center;
+}

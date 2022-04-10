@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Footer.module.css";
 import { LOGO_IMG } from "../../../Utils/Constants/StaticData";
-import FooterImg from "../../../Assets/LandingPage/Footer.svg";
+import DeliveryBoy from "../../../Assets/LandingPage/DeliveryBoy.svg";
 
 import { ReactComponent as Facebook } from "../../../Assets/SocialMediaIcons/ic_facebook.svg";
 import { ReactComponent as Instagram } from "../../../Assets/SocialMediaIcons/ic_instagram.svg";
@@ -97,7 +97,7 @@ const Footer = () => {
       </div>
       <div className={styles.RightContainer}>
         <p>{heading}</p>
-        <img src={FooterImg} alt="footer" />
+        <img src={DeliveryBoy} alt="footer" />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { ToastContainer } from "react-toastify";
 import { registerPlugin } from "react-filepond";
@@ -13,19 +13,28 @@ import styles from "./App.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import "filepond/dist/filepond.min.css";
 
-import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+import LandingPage from "./Containers/LandingPage";
+import ErrorPage from "./Containers/ErrorPage";
+import StorageInfoPage from "./Containers/StorageInfoPage";
+import Profile from "./Containers/Profile/Profile";
 
 import { UPDATE_USER_DATA } from "./Redux/ActionTypes";
 import notify from "./Utils/Helpers/notifyToast";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+import PopUp from "./Components/_General/PopUp/PopUp";
 
-import LandingPage from "./Containers/LandingPage";
 import Preloader from "./Components/Preloader/index";
+import { UPDATE_BOOK_STORAGE_POPUP_STATE } from "./Redux/ActionTypes";
+import BookStorage from "./Components/BookStorage/index";
+import HomePage from "./Containers/HomePage";
 
+// Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 const App = () => {
+  const popupStates = useSelector((state) => state.popUpReducer);
   const userData = useSelector((state) => state.userReducer.userData);
   const dispatch = useDispatch();
   const [hasInitialised, setHasInitialised] = React.useState(false);
@@ -146,8 +155,27 @@ const App = () => {
         type: UPDATE_USER_DATA,
         data: null,
       });
+      // setInitialized(true);
     }
+    // } else {
+    //   dispatch({
+    //     type: UPDATE_USER_DATA,
+    //     data: null,
+    //   });
+    //   // setInitialized(true);
+    // }
   };
+
+  const closeBookingPopup = () => {
+    dispatch({
+      type: UPDATE_BOOK_STORAGE_POPUP_STATE,
+      value: false,
+    });
+  };
+
+  useEffect(async () => {
+    fetchUserData();
+  }, [cookie]);
 
   return (
     <>
@@ -155,17 +183,42 @@ const App = () => {
       <>
         {hasInitialised ? (
           <>
-            {userData != null && (
-              <Routes>
-                {["/", "login", "signup"].map((path, index) => (
+            <Routes>
+              {userData != null ? (
+                <>
                   <Route
                     exact
-                    key={index}
-                    path={path}
-                    element={<LandingPage />}
+                    path="storage/:id"
+                    element={<StorageInfoPage />}
                   />
-                ))}
-              </Routes>
+                  <Route exact path="profile/*" element={<Profile />} />
+                  <Route exact path="home" element={<HomePage />} />
+                </>
+              ) : (
+                <>
+                  {["/", "login", "signup"].map((path, index) => (
+                    <Route
+                      exact
+                      key={index}
+                      path={path}
+                      element={<LandingPage />}
+                    />
+                  ))}
+                </>
+              )}
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
+            {userData && (
+              <>
+                <PopUp
+                  isOpen={popupStates.bookStorage}
+                  ContentComp={
+                    <BookStorage refreshDataFunction={fetchUserData} />
+                  }
+                  closeFun={closeBookingPopup}
+                  withBorder={false}
+                />
+              </>
             )}
           </>
         ) : (

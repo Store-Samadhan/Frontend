@@ -1,0 +1,97 @@
+.Wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.TitleInfoSec {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  grid-gap: 1rem;
+}
+
+.FacilityName {
+  font-size: var(--font-24);
+  color: var(--sec-black);
+  font-weight: 500;
+  width: fit-content;
+  max-width: 60%;
+}
+
+.ReviewsSec {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 1rem;
+}
+
+.NoOfRatings {
+  font-size: var(--font-14);
+  color: var(--ter-black);
+  font-weight: 500;
+}
+
+.TagsList {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  grid-gap: 0.5rem;
+  font-size: 1.4rem;
+  margin-top: 1.2rem;
+}
+
+.Tag {
+  padding: 0.5rem 1.8rem;
+  border-radius: 999px;
+  color: var(--primary-orange);
+  outline: 1px solid var(--primary-orange);
+  line-height: auto;
+  font-size: var(--font-14);
+}
+
+.AveragePrice {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.AvgPrice {
+  font-size: var(--font-24);
+  color: var(--sec-black);
+  font-weight: 600;
+}
+
+.AvgPriceTxt {
+  font-size: var(--font-16);
+  color: var(--sec-black);
+  transform: translateY(-0.2rem);
+}
+
+.Address {
+  font-size: var(--font-16);
+  color: var(--sec-black);
+  margin-top: 1.4rem;
+}
+
+.Hr {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-grey);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.PricingTitle {
+  color: var(--sec-black);
+  font-size: var(--font-18);
+  font-weight: 400;
+}
+
+.PricingTable {
+  margin-top: 1.5rem;
+}
