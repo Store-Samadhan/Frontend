@@ -1,70 +1,125 @@
-# Getting Started
+![Logo](https://res.cloudinary.com/connect-x/image/upload/v1649589432/Logo_j9js3h.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [Generator Front To Back](https://github.com/GunaShekar02/generator-front-to-back).
+## Hosted URL
 
-## Available Scripts
+https://cryptomon-iiitm.netlify.app/
 
-In the project directory, you can run:
+Welcome to StoreSamadhan, A Portal which provides you places where you can store you goods for days, weeks, months and year at very pocket-friendly prices.
 
-### `yarn start`
+## Objective
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In this high-moving life where we have to move from one place to another for jobs, education etc. many times and in this, we have to carry extra luggage in the journey e.g. Student they move from their place to home several times in a year for some days, months etc. either they have to carry extra luggage or pay rents for just storing their luggage in the rooms. To solve this problem, we made StoreSamadhan.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## What does it do?
 
-### `yarn test`
+### User -
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- When a user registers, they will be redirected to the home page.
+- They should enter all the required fields in the profile section.
+- They can search storages just by entering pincode or city of their choice.
+- They can review storages by their rating and price.
+- After selecting storage they have to pay price and have access the storage provider details.
 
-### `yarn build`
+### Storage Provider-
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Development Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Frontend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Fork the repository
+- Clone the repository
 
-### `yarn eject`
+```sh
+git clone https://github.com/Store-Samadhan/Frontend.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Open the folder containing the cloned repository
+- Install the required packages, libraries and dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Custom API keys can be set up in a .env file. We have added an example of env in .env.example file.
+- Run the project locally to access the frontend functionality of the website
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```sh
+npm start
+```
 
-## Learn More
+### Backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Fork the repository
+- Clone the repository
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```sh
+git clone https://github.com/Store-Samadhan/Backend.git
+```
 
-### Code Splitting
+- Open the folder containing the cloned repository
+- Install the required packages, libraries and dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```sh
+npm install
+```
 
-### Analyzing the Bundle Size
+- Custom API keys can be set up in a .env file. We have added an example of env in .env.example file.
+- Run the project locally to access the frontend functionality of the website
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```sh
+npm dev
+```
 
-### Making a Progressive Web App
+## Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/1.png")
 
-### Advanced Configuration
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/2.png")
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/3.png")
 
-### Deployment
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/4.png")
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/5.png")
 
-### `yarn build` fails to minify
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/11.png")
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/6.png")
+
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/8.png")
+
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/7.png")
+
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/9.png")
+
+![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/10.png")
+
+## 🔗 Know the Project Creater
+
+Akash Gupta
+
+[![portfolio](https://img.shields.io/badge/github_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/akashgupta1909)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/akash-gupta-1909/)
+
+Harshil Mendpara
+
+[![portfolio](https://img.shields.io/badge/github_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/HarshilMendpara)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/harshil-mendpara/)
+
+Ujjawal Gupta
+
+[![portfolio](https://img.shields.io/badge/github_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/UjjawalGupta30)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ujjawalgupta30/)
+
+Raj Varsani
+
+[![portfolio](https://img.shields.io/badge/github_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/RajVarsani)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/varsani-raj/)
+
+## Demo
+
+https://drive.google.com/file/d/1MY4sTesn01kohd_dsUrUFYJoknegp6v3/view
+
+## License
+
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
