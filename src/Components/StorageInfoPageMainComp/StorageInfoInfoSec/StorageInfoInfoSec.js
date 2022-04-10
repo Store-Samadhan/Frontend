@@ -18,9 +18,14 @@ function StorageInfoInfoSec({ storageDetails }) {
       <div className={styles.TitleInfoSec}>
         <h4 className={styles.FacilityName}>{storageDetails.name}</h4>
         <div div className={styles.ReviewsSec}>
-          <Ratings rating={storageDetails.ratings.avgRating} />
+          <Ratings
+            rating={
+              storageDetails.ratings ? storageDetails.ratings.avgRating : 0
+            }
+          />
+
           <span className={styles.NoOfRatings}>
-            {storageDetails.ratings.totalRatings}{" "}
+            {storageDetails.ratings ? storageDetails.ratings.totalRatings : 0}{" "}
             {STORAGE_INFO_PAGE_DATA.reviews}
           </span>
         </div>
@@ -33,12 +38,14 @@ function StorageInfoInfoSec({ storageDetails }) {
         ))}
       </div>
       <div className={styles.AveragePrice}>
-        <span className={styles.AvgPrice}>{"₹" + storageDetails.avgPrice}</span>
+        <span className={styles.AvgPrice}>
+          {"₹" + (storageDetails.avgPrice ? storageDetails.avgPrice : "-")}
+        </span>
         <span className={styles.AvgPriceTxt}>
           {STORAGE_INFO_PAGE_DATA.avgTxt}
         </span>
       </div>
-      <sapn className={styles.Address}>{storageDetails.address}</sapn>
+      <span className={styles.Address}>{storageDetails.address}</span>
       <hr className={styles.Hr} />
       <div className={styles.PricingSec}>
         <h4 className={styles.PricingTitle}>
@@ -46,9 +53,25 @@ function StorageInfoInfoSec({ storageDetails }) {
         </h4>
         <div className={styles.PricingTable}>
           <Table
-            data={storageDetails.pricing.data}
-            columns={storageDetails.pricing.columns}
+            data={storageDetails.pricing ? storageDetails.pricing.data : []}
+            columns={
+              storageDetails.pricing
+                ? storageDetails.pricing.columns
+                : [
+                    {
+                      Header: "Type",
+                      accessor: "type",
+                    },
+                    {
+                      Header: "Price per box",
+                      accessor: "price",
+                    },
+                  ]
+            }
           />
+          {!storageDetails.pricing && (
+            <div className={styles.NoData}>{STORAGE_INFO_PAGE_DATA.noData}</div>
+          )}
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ function StorageInfoPageMainComp({ storageDetails, refreshDataFun }) {
         <div className={styles.LeftSecWrapper}>
           <StorageInfoImageSec
             images={storageDetails.images}
-            googlEmbedURL={storageDetails.mapsEmbedURL}
+            googlEmbedURL={storageDetails.location}
           />
         </div>
         <div className={styles.RightSecWrapper}>

@@ -36,9 +36,13 @@ function StorageInfoReviewSec({ storageDetails, refreshDataFun }) {
           {STORAGE_INFO_PAGE_DATA.ratingsAndReviews}
         </h4>
         <div className={styles.ReviewHighlights}>
-          <Ratings rating={storageDetails.ratings.avgRating} />
+          <Ratings
+            rating={
+              storageDetails.ratings ? storageDetails.ratings.avgRating : 0
+            }
+          />
           <span className={styles.NoOfRatings}>
-            {storageDetails.ratings.totalRatings}{" "}
+            {storageDetails.ratings ? storageDetails.ratings.totalRatings : 0}{" "}
             {STORAGE_INFO_PAGE_DATA.reviews}
           </span>
         </div>
@@ -67,7 +71,7 @@ function StorageInfoReviewSec({ storageDetails, refreshDataFun }) {
         />
       </form>
       <div className={styles.ReviewsList}>
-        {storageDetails.ratings.reviews.map((review, index) => {
+        {storageDetails.ratings?.reviews.map((review, index) => {
           return (
             <div
               key={index}

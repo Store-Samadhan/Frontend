@@ -46,7 +46,7 @@ function StorageInfoImageSec({ images, googlEmbedURL }) {
             className={styles.Image}
           />
         </div>
-        {images.map((image, index) => (
+        {images?.map((image, index) => (
           <div
             key={index}
             className={

@@ -8,6 +8,8 @@ import Footer from "../../Components/Footer";
 import StorageInfoPageMainComp from "../../Components/StorageInfoPageMainComp";
 import notify from "./../../Utils/Helpers/notifyToast";
 import NavBar from "../../Components/NavBar";
+import { fetchStorageInfoById } from "../../Services/storage.service";
+import { useSelector } from "react-redux";
 
 const tempSTorageData = {
   images: [
@@ -87,20 +89,26 @@ const tempSTorageData = {
 };
 
 function StorageInfoPage() {
+  const userData = useSelector((state) => state.userReducer.userData);
+
   const navigate = useNavigate();
-  let { id: storage } = useParams();
+  let { id: storageId } = useParams();
 
   const [storageDetails, setStorageDetails] = useState(null);
 
   useEffect(() => {
     getStorageDetails();
-  }, [storage]);
+  }, [storageId]);
 
   const getStorageDetails = async () => {
     try {
-      setTimeout(() => {
-        setStorageDetails(tempSTorageData);
-      }, 1000);
+      const tempSTorageData = await fetchStorageInfoById(
+        storageId,
+        userData.accessToken
+      );
+      setStorageDetails(tempSTorageData);
+
+      console.log(tempSTorageData);
     } catch (err) {
       notify("Internal Server Error", "error");
       navigate("/");
