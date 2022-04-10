@@ -1,0 +1,95 @@
+.Wrapper {
+  padding: 3rem calc((50% - (var(--max-width) / 2)));
+}
+.Wrapper > h2 {
+  font-weight: 400;
+  font-size: var(--font-20);
+  line-height: 3rem;
+  font-weight: 500;
+  color: var(--pure-black);
+  margin-bottom: 1.5rem;
+}
+.Wrapper > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.3rem;
+}
+.ContainerWrapper {
+  width: 29rem;
+  border: 1px solid var(--border-grey);
+  box-sizing: border-box;
+  border-radius: 1rem;
+  padding: 1.2rem;
+}
+.ImageWrapper img {
+  width: 100%;
+  height: 27.4rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+.DetailsWrapper > h3 {
+  font-weight: 500;
+  font-size: var(--font-18);
+  line-height: 2.7rem;
+  color: var(--sec-black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ChargesReviewWrapper {
+  display: flex;
+  gap: 1.3rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.ChargesReviewWrapper div:first-child span:first-child {
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--font-24);
+  line-height: 3.6rem;
+  color: var(--sec-black);
+}
+.ChargesReviewWrapper div:first-child span:last-child {
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--font-16);
+  line-height: 2.4rem;
+  color: var(--sec-black);
+}
+.ChargesReviewWrapper div:last-child {
+  background-color: var(--green-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--pure-white);
+  padding: 0.3rem 1.1rem;
+  gap: 0.4rem;
+  border-radius: 5.5rem;
+  font-size: var(--font-14);
+}
+.DetailsWrapper > p {
+  font-weight: 400;
+  font-size: var(--font-14);
+  line-height: 2.1rem;
+  color: var(--ter-black);
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.TagsWrapper {
+  font-weight: 400;
+  font-size: var(--font-12);
+  color: var(--sec-black);
+  line-height: 1.8rem;
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.TagsWrapper span {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--sec-black);
+  border-radius: 5rem;
+}
