@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   GET_FILTERED_STORAGE_URL,
   GET_STORAGE_INFO_BY_ID_URL,
+  UPDATE_STORAGE_DATA_URL,
 } from "../Utils/Constants/APIConstants";
 
 export const fetchFilteredStorage = async (
@@ -37,6 +38,23 @@ export const fetchStorageInfoById = async (id, accessToken) => {
         storageId: id,
       },
     });
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const updateStorage = async (storageData, accessToken) => {
+  try {
+    const { data } = await axios.put(
+      `${UPDATE_STORAGE_DATA_URL}`,
+      { storageData },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     return data;
   } catch (err) {
     console.log(err);
