@@ -26,12 +26,12 @@
 }
 .Heading {
   font-weight: 400;
-  font-size: var(--font-45);
+  font-size: var(--font-42);
   line-height: 130%;
   text-align: center;
   color: var(--sec-black);
-  max-width: 34.7rem;
-  margin-top: -4.5rem;
+  max-width: 40rem;
+  margin-top: -2.5rem;
 }
 .LowerDots {
   position: absolute;
