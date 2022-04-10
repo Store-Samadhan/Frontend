@@ -84,8 +84,8 @@ export const PROFILE_DATA = {
     feilds: [
       { key: "Name", value: "name" },
       { key: "Email", value: "email" },
-      { key: "Phone Number", value: "mobile" },
-      { key: "Maps Embed URL", value: "mapsEmbedURL" },
+      { key: "Phone Number", value: "phone" },
+      { key: "Maps Embed URL", value: "location" },
     ],
     addresses: "Addresses",
     addAddress: "Add Address",
