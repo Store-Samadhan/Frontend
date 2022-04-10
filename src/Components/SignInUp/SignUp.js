@@ -21,6 +21,7 @@ import { useDispatch } from "react-redux";
 import notify from "../../Utils/Helpers/notifyToast";
 import { validateEmail } from "./Helpers/ValidateEmail";
 import { fetchAndSetUserData } from "./Helpers/updateState";
+import { signUpUser } from "../../Services/signInUp.service";
 
 function SignUp() {
   const location = useLocation();
@@ -54,10 +55,38 @@ function SignUp() {
       const userData = {
         name: elements.Name.value,
         email: elements.SignUpEmail.value,
-        phone: elements.Mobile.value,
+        phone: parseInt(elements.Mobile.value),
         state: elements.State.value,
         city: elements.City.value,
       };
+      if (isStorageSelected) {
+        userData.address = elements.Address.value;
+        userData.location = elements.URL.value;
+        userData.pincode = parseInt(elements.Pincode.value);
+        userData.aadhar = parseInt(elements.aadharcard.value);
+        userData.pan = elements.PAN.value;
+      }
+      console.log(userData);
+
+      const signupStatus = await signUpUser({
+        email: elements.SignUpEmail.value,
+        password: elements.SignUpPassword.value,
+        userData: userData,
+        isStorage: isStorageSelected,
+      });
+
+      if (signupStatus.status) {
+        await fetchAndSetUserData(
+          signupStatus.accessToken,
+          signupStatus.uid,
+          dispatch,
+          navigate,
+          signupStatus.message
+        );
+      } else {
+        notify(signupStatus.message, "error");
+      }
+      setIsDisabled(false);
     }
   };
 
@@ -155,7 +184,7 @@ function SignUp() {
 
           <StyledMUIInput
             fullWidth
-            label="Mobile ( Optional )"
+            label="Mobile"
             value={values.Mobile}
             onChange={handleChange}
             name="Mobile"
@@ -248,6 +277,24 @@ function SignUp() {
                 margin="dense"
                 type="url"
                 autoComplete="url"
+                disabled={isDisabled}
+              />
+              <StyledMUIInput
+                fullWidth
+                id="aadharcard"
+                label="Aadhar Card"
+                variant="standard"
+                margin="dense"
+                type="number"
+                disabled={isDisabled}
+              />
+              <StyledMUIInput
+                fullWidth
+                id="PAN"
+                label="PAN Card"
+                variant="standard"
+                margin="dense"
+                type="text"
                 disabled={isDisabled}
               />
             </>

@@ -15,20 +15,14 @@ import notify from "./../../../../Utils/Helpers/notifyToast";
 function PersonalInfoSec() {
   const userData = useSelector((state) => state.userReducer.userData);
   const [localeUserData, setLocaleUserData] = useState({ ...userData });
-  const [tableData, setTableData] = useState([...userData.pricing.data]);
-  const [columsData, setColumsData] = useState([...userData.pricing.columns]);
+
+  const [tableData, setTableData] = useState([]);
+  const [columsData, setColumsData] = useState([]);
+
   const columnNameRef = useRef(null);
   const tagsWrapperRef = useRef(null);
-  const [files, setFiles] = useState(
-    userData.images.map((image) => {
-      return {
-        source: image,
-        options: {
-          type: "local",
-        },
-      };
-    })
-  );
+  const [files, setFiles] = useState([]);
+
   const updateMyData = (rowIndex, columnId, value) => {
     setTableData((old) =>
       old.map((row, index) => {
@@ -45,17 +39,19 @@ function PersonalInfoSec() {
 
   const resetData = () => {
     setLocaleUserData({ ...userData });
-    setColumsData([...userData.pricing.columns]);
-    setTableData([...userData.pricing.data]);
+    setColumsData(userData.pricing ? [...userData.pricing.columns] : []);
+    setTableData(userData.pricing ? [...userData.pricing.data] : []);
     setFiles(
-      userData.images.map((image) => {
-        return {
-          source: image,
-          options: {
-            type: "local",
-          },
-        };
-      })
+      userData.images
+        ? userData.images.map((image) => {
+            return {
+              source: image,
+              options: {
+                type: "local",
+              },
+            };
+          })
+        : []
     );
   };
 
@@ -76,7 +72,7 @@ function PersonalInfoSec() {
         }
       });
     }
-  }, [userData, localeUserData.tags.length]);
+  }, [userData, localeUserData.tags?.length]);
 
   return (
     <div className={styles.Wrapper}>
@@ -105,22 +101,24 @@ function PersonalInfoSec() {
       </div>
 
       <div className={styles.BottomSec}>
-        <div className={styles.FileInputWrapper}>
-          <FilePond
-            files={files}
-            onupdatefiles={setFiles}
-            allowMultiple={true}
-            maxFiles={3}
-            server="http://localhost:9090/images"
-            name="files"
-            labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-            // onprocessfile={(err, file) => {
-            //   console.log(err, file.serverId);
-            // }}
-          />
-        </div>
+        {userData.isStorage && (
+          <div className={styles.FileInputWrapper}>
+            <FilePond
+              files={files}
+              onupdatefiles={setFiles}
+              allowMultiple={true}
+              maxFiles={3}
+              server="http://localhost:9090/images"
+              name="files"
+              labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+              // onprocessfile={(err, file) => {
+              //   console.log(err, file.serverId);
+              // }}
+            />
+          </div>
+        )}
         <div className={styles.KeyValuePairs}>
-          {(localeUserData.isSeller
+          {(localeUserData.isStorage
             ? PROFILE_DATA.personalInfoSec.feilds.slice(0, 4)
             : PROFILE_DATA.personalInfoSec.feilds.slice(0, 3)
           ).map((feild, index) => {
@@ -141,143 +139,148 @@ function PersonalInfoSec() {
             );
           })}
         </div>
-        <div className={styles.TagsSec}>
-          <h4 className={styles.AddressTitle}>
-            {PROFILE_DATA.personalInfoSec.tags}
-          </h4>
-          <div className={styles.Tags} ref={tagsWrapperRef}>
-            {localeUserData.tags.map((tag, index) => {
-              return (
-                <input
-                  className={styles.Tag}
-                  key={index}
-                  value={tag}
-                  onChange={(e) => {
-                    e.target.style.width = `${e.target.value.length + 3}ch`;
+        {userData.isStorage && (
+          <>
+            <div className={styles.TagsSec}>
+              <h4 className={styles.AddressTitle}>
+                {PROFILE_DATA.personalInfoSec.tags}
+              </h4>
+              <div className={styles.Tags} ref={tagsWrapperRef}>
+                {localeUserData.tags.map((tag, index) => {
+                  return (
+                    <input
+                      className={styles.Tag}
+                      key={index}
+                      value={tag}
+                      onChange={(e) => {
+                        e.target.style.width = `${e.target.value.length + 3}ch`;
+                        setLocaleUserData({
+                          ...localeUserData,
+                          tags: [
+                            ...localeUserData.tags.slice(0, index),
+                            e.target.value,
+                            ...localeUserData.tags.slice(index + 1),
+                          ],
+                        });
+                      }}
+                    />
+                  );
+                })}
+                <Button
+                  name={PROFILE_DATA.personalInfoSec.addTag}
+                  onClick={() => {
                     setLocaleUserData({
                       ...localeUserData,
-                      tags: [
-                        ...localeUserData.tags.slice(0, index),
-                        e.target.value,
-                        ...localeUserData.tags.slice(index + 1),
-                      ],
+                      tags: [...localeUserData.tags, ""],
                     });
                   }}
+                  primaryColor="var(--primary-orange)"
+                  inverted
+                  withIcon
+                  IconComp={PlusImg}
+                  iconClass={styles.TagPlusIcon}
+                  wrapperClass={styles.AddTagWrapper}
                 />
-              );
-            })}
-            <Button
-              name={PROFILE_DATA.personalInfoSec.addTag}
-              onClick={() => {
-                setLocaleUserData({
-                  ...localeUserData,
-                  tags: [...localeUserData.tags, ""],
-                });
-              }}
-              primaryColor="var(--primary-orange)"
-              inverted
-              withIcon
-              IconComp={PlusImg}
-              iconClass={styles.TagPlusIcon}
-              wrapperClass={styles.AddTagWrapper}
-            />
-          </div>
-        </div>
-        <div className={styles.PricingSec}>
-          <h4 className={styles.AddressTitle}>
-            {PROFILE_DATA.personalInfoSec.pricing}
-          </h4>
-          <div className={styles.PricingTable}>
-            <div className={styles.AddColumn}>
-              <input
-                name={PROFILE_DATA.personalInfoSec.addColumn}
-                ref={columnNameRef}
-                className={styles.AddColumnInput}
-              />
-              <Button
-                name={PROFILE_DATA.personalInfoSec.addCol}
-                wrapperClass={styles.AddColumnBtn}
-                onClick={() => {
-                  if (
-                    !columnNameRef.current.value ||
-                    columnNameRef.current.value.length < 1
-                  ) {
-                    notify("Please enter a valid column name", "error");
-                    return;
-                  }
-
-                  if (
-                    columsData
-                      .map((column) => column.accessor)
-                      .includes(
-                        columnNameRef.current.value
-                          .replace(/\s/g, "")
-                          .toLowerCase()
-                      )
-                  ) {
-                    notify("Column already exists", "error");
-                    return;
-                  }
-
-                  setColumsData((old) => [
-                    ...old,
-                    {
-                      Header: columnNameRef.current.value,
-                      accessor: columnNameRef.current.value
-                        .replace(/\s/g, "")
-                        .toLowerCase(),
-                    },
-                  ]);
-
-                  setTableData((old) =>
-                    old.map((row) => {
-                      return {
-                        ...row,
-                        [columnNameRef.current.value]: "",
-                      };
-                    })
-                  );
-                }}
-                inverted
-                primaryColor={"var(--ter-black)"}
-                withIcon
-                IconComp={PlusImg}
-              />
+              </div>
             </div>
-            <EditableTable
-              columns={columsData}
-              data={tableData}
-              setData={setTableData}
-              setColumsData={setColumsData}
-              updateMyData={updateMyData}
-            />
-            <Button
-              name={PROFILE_DATA.personalInfoSec.addRow}
-              onClick={() => {
-                setTableData((old) => [
-                  ...old,
-                  {
-                    ...columsData.reduce((acc, column) => {
-                      acc[column.accessor] = "";
-                      return acc;
-                    }, {}),
-                  },
-                ]);
-              }}
-              inverted
-              primaryColor={"var(--ter-black)"}
-              withIcon
-              IconComp={PlusImg}
-              wrapperClass={styles.AddRowBtn}
-            />
-          </div>
-        </div>
+            <div className={styles.PricingSec}>
+              <h4 className={styles.AddressTitle}>
+                {PROFILE_DATA.personalInfoSec.pricing}
+              </h4>
+              <div className={styles.PricingTable}>
+                <div className={styles.AddColumn}>
+                  <input
+                    name={PROFILE_DATA.personalInfoSec.addColumn}
+                    ref={columnNameRef}
+                    className={styles.AddColumnInput}
+                  />
+                  <Button
+                    name={PROFILE_DATA.personalInfoSec.addCol}
+                    wrapperClass={styles.AddColumnBtn}
+                    onClick={() => {
+                      if (
+                        !columnNameRef.current.value ||
+                        columnNameRef.current.value.length < 1
+                      ) {
+                        notify("Please enter a valid column name", "error");
+                        return;
+                      }
+
+                      if (
+                        columsData
+                          .map((column) => column.accessor)
+                          .includes(
+                            columnNameRef.current.value
+                              .replace(/\s/g, "")
+                              .toLowerCase()
+                          )
+                      ) {
+                        notify("Column already exists", "error");
+                        return;
+                      }
+
+                      setColumsData((old) => [
+                        ...old,
+                        {
+                          Header: columnNameRef.current.value,
+                          accessor: columnNameRef.current.value
+                            .replace(/\s/g, "")
+                            .toLowerCase(),
+                        },
+                      ]);
+
+                      setTableData((old) =>
+                        old.map((row) => {
+                          return {
+                            ...row,
+                            [columnNameRef.current.value]: "",
+                          };
+                        })
+                      );
+                    }}
+                    inverted
+                    primaryColor={"var(--ter-black)"}
+                    withIcon
+                    IconComp={PlusImg}
+                  />
+                </div>
+                <EditableTable
+                  columns={columsData}
+                  data={tableData}
+                  setData={setTableData}
+                  setColumsData={setColumsData}
+                  updateMyData={updateMyData}
+                />
+                <Button
+                  name={PROFILE_DATA.personalInfoSec.addRow}
+                  onClick={() => {
+                    setTableData((old) => [
+                      ...old,
+                      {
+                        ...columsData.reduce((acc, column) => {
+                          acc[column.accessor] = "";
+                          return acc;
+                        }, {}),
+                      },
+                    ]);
+                  }}
+                  inverted
+                  primaryColor={"var(--ter-black)"}
+                  withIcon
+                  IconComp={PlusImg}
+                  wrapperClass={styles.AddRowBtn}
+                />
+              </div>
+            </div>
+          </>
+        )}
+
         <div className={styles.AddressSec}>
           <h4 className={styles.AddressTitle}>
             {PROFILE_DATA.personalInfoSec.addresses}
           </h4>
           <div className={styles.AddressListWrapper}>
-            {localeUserData.addresses.map((address, index) => {
+            {localeUserData.addresses?.map((address, index) => {
               return (
                 <div className={styles.Address} key={index}>
                   <textarea
