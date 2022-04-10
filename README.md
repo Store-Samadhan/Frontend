@@ -2,7 +2,11 @@
 
 ## Hosted URL
 
-https://cryptomon-iiitm.netlify.app/
+https://store-samadhan.netlify.app/
+
+## Figma URL
+
+https://www.figma.com/file/LzGhPtx8m6JbajT56UhgaS/Store-Samadhan-UI
 
 Welcome to StoreSamadhan, A Portal which provides you places where you can store you goods for days, weeks, months and year at very pocket-friendly prices.
 
