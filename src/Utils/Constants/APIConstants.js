@@ -6,3 +6,4 @@ export const SIGNUP_USER_URL = `${AUTH_URL}/signupuser`;
 export const SIGNUP_STORAGE_URL = `${AUTH_URL}/signupStorage`;
 export const GET_USER_URL = `${AUTH_URL}/getUserDetails`;
 export const GET_FILTERED_STORAGE_URL = `${STORAGE_URL}/getFilteredStorage`;
+export const GET_STORAGE_INFO_BY_ID_URL = `${STORAGE_URL}/getStorage`;
