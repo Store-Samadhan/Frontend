@@ -1,0 +1,10 @@
+.Wrapper {
+  width: 100%;
+  position: relative;
+}
+.SearchComponentWrapper {
+  padding-top: calc(var(--navbar-height) + 2.8rem);
+  padding-bottom: 2.8rem;
+  padding-left: calc((50% - (var(--max-width) / 2)));
+  background-color: var(--primary-orange);
+}
