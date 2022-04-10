@@ -28,7 +28,7 @@
   font-weight: 400;
   font-size: var(--font-42);
   line-height: 130%;
-  text-align: center;
+  text-align: right;
   color: var(--sec-black);
   max-width: 40rem;
   margin-top: -2.5rem;
