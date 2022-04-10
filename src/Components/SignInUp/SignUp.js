@@ -265,7 +265,7 @@ function SignUp() {
                 label="PAN Card"
                 variant="standard"
                 margin="dense"
-                type="url"
+                type="text"
                 disabled={isDisabled}
               />
             </>
