@@ -1,4 +1,6 @@
 export const BASE_URL = "http://localhost:8000/api/v1";
+export const CLOUD_URL =
+  "http://storesamadhan-storage.centralindia.cloudapp.azure.com/images";
 export const AUTH_URL = `${BASE_URL}/auth`;
 export const STORAGE_URL = `${BASE_URL}/storage`;
 export const USER_URL = `${BASE_URL}/user`;
@@ -9,3 +11,5 @@ export const GET_USER_URL = `${AUTH_URL}/getUserDetails`;
 export const GET_FILTERED_STORAGE_URL = `${STORAGE_URL}/getFilteredStorage`;
 export const GET_STORAGE_INFO_BY_ID_URL = `${STORAGE_URL}/getStorage`;
 export const ADD_REVIEW_URL = `${USER_URL}/addRating`;
+export const UPDATE_USER_DATA_URL = `${USER_URL}/updateUser`;
+export const UPDATE_STORAGE_DATA_URL = `${STORAGE_URL}/updateStorage`;
