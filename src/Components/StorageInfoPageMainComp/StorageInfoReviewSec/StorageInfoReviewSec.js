@@ -8,7 +8,7 @@ import Ratings from "../../Ratings/Ratings";
 import Button from "../../Button/Button";
 import Rating from "@mui/material/Rating";
 import notify from "../../../Utils/Helpers/notifyToast";
-import { addReview } from "./../../../Services/storage.service";
+import { addReview } from "../../../Services/user.service";
 
 function StorageInfoReviewSec({ storageDetails, refreshDataFun }) {
   const userData = useSelector((state) => state.userReducer.userData);
@@ -23,7 +23,7 @@ function StorageInfoReviewSec({ storageDetails, refreshDataFun }) {
         throw new Error("Please enter review text");
       }
 
-      const resp = await addReview(
+      await addReview(
         {
           rating: ratingsValue,
           storageId: storageDetails.id,
