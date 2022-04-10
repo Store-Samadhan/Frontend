@@ -107,7 +107,7 @@ export const PROFILE_DATA = {
     boxes: "Boxes:",
     from: "From:",
     to: "To:",
-    shippingAddress: "Shipping Address",
+    shippingAddress: "Address :",
   },
 };
 

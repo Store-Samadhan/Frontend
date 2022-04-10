@@ -3,6 +3,10 @@ import { PROFILE_DATA } from "../../../../Utils/Constants/StaticData";
 
 import styles from "./Bookings.module.css";
 import Preloader from "./../../../Preloader/index";
+import { useSelector } from "react-redux";
+import { fetchStorageBookings } from "../../../../Services/storage.service";
+import notify from "./../../../../Utils/Helpers/notifyToast";
+import { getUserBookings } from "../../../../Services/user.service";
 
 const tempBookingsData = new Array(10).fill(null).map((_, index) => {
   return {
@@ -32,13 +36,30 @@ const tempBookingsData = new Array(10).fill(null).map((_, index) => {
 });
 
 function Bookings() {
+  const userData = useSelector((state) => state.userReducer.userData);
+
   const [bookingsData, setBookingsData] = React.useState(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setBookingsData(tempBookingsData);
-    }, 1000);
+    fetchBookingsData();
   }, []);
+
+  const fetchBookingsData = async () => {
+    setBookingsData(null);
+    try {
+      if (userData.isStorage) {
+        const respData = await fetchStorageBookings(userData.accessToken);
+        console.log(respData);
+        setBookingsData(respData.bookings);
+      } else {
+        const respData = await getUserBookings(userData.accessToken);
+        console.log(respData);
+        setBookingsData(respData.bookings);
+      }
+    } catch (error) {
+      notify("Error while fetching bookings data", "error");
+    }
+  };
 
   return (
     <>
@@ -66,15 +87,21 @@ function Bookings() {
                         : {}
                     }
                   >
-                    <div className={styles.BookingLeftSec}>
-                      <img
-                        src={booking.image}
-                        alt="bookingImg"
-                        className={styles.BookingImg}
-                      />
-                    </div>
+                    {!userData.isStorage && (
+                      <div className={styles.BookingLeftSec}>
+                        <img
+                          src={booking.image}
+                          alt="bookingImg"
+                          className={styles.BookingImg}
+                        />
+                      </div>
+                    )}
                     <div className={styles.BookingRightSec}>
-                      <h4 className={styles.StorageName}>{booking.name}</h4>
+                      <h4 className={styles.StorageName}>
+                        {userData.isStorage
+                          ? booking.userName
+                          : booking.storageName}
+                      </h4>
                       <h5 className={styles.BookingAmount}>
                         {"₹"}
                         {booking.amount}
@@ -84,7 +111,7 @@ function Bookings() {
                           <h5 className={styles.Key}>
                             {PROFILE_DATA.BookingsSec.boxes}
                           </h5>
-                          <h5 className={styles.Value}>{booking.noOfBoxes}</h5>
+                          <h5 className={styles.Value}>{booking.boxes}</h5>
                         </div>
                       </div>
                       <div className={styles.BookingDates}>
@@ -93,7 +120,9 @@ function Bookings() {
                             {PROFILE_DATA.BookingsSec.from}
                           </h5>
                           <h5 className={styles.Value}>
-                            {booking.from.toLocaleDateString()}
+                            {new Date(
+                              booking.fromDate._seconds * 1000
+                            ).toLocaleDateString()}
                           </h5>
                         </div>
                         <div className={styles.KeyValuePair}>
@@ -101,16 +130,20 @@ function Bookings() {
                             {PROFILE_DATA.BookingsSec.to}
                           </h5>
                           <h5 className={styles.Value}>
-                            {booking.to.toLocaleDateString()}
+                            {new Date(
+                              booking.toDate._seconds * 1000
+                            ).toLocaleDateString()}
                           </h5>
                         </div>
                       </div>
-                      <div className={styles.BookingAddress}>
-                        <h5 className={styles.Key}>
-                          {PROFILE_DATA.BookingsSec.shippingAddress}
-                        </h5>
-                        <h5 className={styles.Value}>{booking.address}</h5>
-                      </div>
+                      {!userData.isStorage && (
+                        <div className={styles.BookingAddress}>
+                          <h5 className={styles.Key}>
+                            {PROFILE_DATA.BookingsSec.shippingAddress}
+                          </h5>
+                          <h5 className={styles.Value}>{booking.address}</h5>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );

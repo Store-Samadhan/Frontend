@@ -4,6 +4,7 @@ import {
   GET_USER_URL,
   ADD_REVIEW_URL,
   UPDATE_USER_DATA_URL,
+  GET_USER_BOOKINGS_URL,
 } from "../Utils/Constants/APIConstants";
 
 export const getUser = async (accessToken) => {
@@ -47,6 +48,19 @@ export const updateUser = async (userData, accessToken) => {
         },
       }
     );
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getUserBookings = async (accessToken) => {
+  try {
+    const { data } = await axios.get(`${GET_USER_BOOKINGS_URL}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     return data;
   } catch (err) {
     console.log(err);
