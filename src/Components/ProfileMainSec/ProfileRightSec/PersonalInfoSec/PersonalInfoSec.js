@@ -14,6 +14,7 @@ import notify from "./../../../../Utils/Helpers/notifyToast";
 import { CLOUD_URL } from "../../../../Utils/Constants/APIConstants";
 import { updateStorage } from "./../../../../Services/storage.service";
 import { UPDATE_USER_DATA } from "./../../../../Redux/ActionTypes";
+import { updateUser } from "./../../../../Services/user.service";
 
 function PersonalInfoSec() {
   const dispatch = useDispatch();
@@ -107,14 +108,11 @@ function PersonalInfoSec() {
           },
           images: files.map((file) => file.serverId || file.source),
         };
-        console.log(files);
-
         let dataToUpload = JSON.parse(JSON.stringify(updatedData));
         delete dataToUpload.isStorage;
         delete dataToUpload.uid;
         delete dataToUpload.accessToken;
 
-        console.log(dataToUpload);
         const responseData = await updateStorage(
           dataToUpload,
           userData.accessToken
@@ -123,18 +121,25 @@ function PersonalInfoSec() {
           type: UPDATE_USER_DATA,
           data: updatedData,
         });
-        console.log(responseData);
+      } else {
+        const updatedData = {
+          ...localeUserData,
+        };
+        let dataToUpload = JSON.parse(JSON.stringify(updatedData));
+        delete dataToUpload.isStorage;
+        delete dataToUpload.uid;
+        delete dataToUpload.accessToken;
+
+        const responseData = await updateUser(
+          dataToUpload,
+          userData.accessToken
+        );
+        dispatch({
+          type: UPDATE_USER_DATA,
+          data: updatedData,
+        });
       }
 
-      // dispatch({
-      //   type: UPDATE_PROFILE_DATA,
-      //   value: updatedData,
-      // });
-      // dispatch({
-      //   type: UPDATE_PROFILE_POPUP_STATE,
-      //   value: true,
-      // });
-      // notify("Successfully updated profile", "success");
       notify("Profile Updated Successfully", "Success");
     } catch (err) {
       notify("Failed to update profile", "Error");
@@ -408,7 +413,7 @@ function PersonalInfoSec() {
                               ...localeUserData.addresses.slice(0, index),
                               {
                                 ...localeUserData.addresses[index],
-                                pincode: e.target.value,
+                                pincode: parseInt(e.target.value),
                               },
                               ...localeUserData.addresses.slice(index + 1),
                             ],
