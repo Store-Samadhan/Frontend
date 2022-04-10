@@ -3,6 +3,7 @@ import {
   GET_FILTERED_STORAGE_URL,
   GET_STORAGE_INFO_BY_ID_URL,
   UPDATE_STORAGE_DATA_URL,
+  GET_STORAGE_BOOKINGS_URL,
 } from "../Utils/Constants/APIConstants";
 
 export const fetchFilteredStorage = async (
@@ -55,6 +56,19 @@ export const updateStorage = async (storageData, accessToken) => {
         },
       }
     );
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const fetchStorageBookings = async (accessToken) => {
+  try {
+    const { data } = await axios.get(`${GET_STORAGE_BOOKINGS_URL}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     return data;
   } catch (err) {
     console.log(err);
