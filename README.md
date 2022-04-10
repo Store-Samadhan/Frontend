@@ -72,27 +72,17 @@ npm dev
 
 ## Screenshots
 
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/1.png")
-
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/2.png")
-
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/3.png")
-
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/4.png")
-
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/5.png")
-
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/11.png")
-
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/6.png")
-
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/8.png")
-
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/7.png")
-
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/9.png")
-
-![App Screenshot]("https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/10.png")
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/1.png)
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/2.PNG)
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/3.png)
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/4.png)
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/5.png)
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/11.png)
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/6.png)
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/8.png)
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/7.png)
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/9.png)
+![App Screenshot](https://github.com/Store-Samadhan/Frontend/blob/main/src/Assets/ReadmeAssets/10.png)
 
 ## 🔗 Know the Project Creater
 
