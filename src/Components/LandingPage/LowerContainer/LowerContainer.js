@@ -3,7 +3,8 @@ import styles from "./LowerContainer.module.css";
 import LowerContainerStore from "../../../Assets/LandingPage/LowerContainerStore.svg";
 import LowerDots from "../../../Assets/LandingPage/LowerDots.svg";
 
-const heading = "Lorem ipsum dolor sit amet consectetur adipiscing elit";
+const heading =
+  "Every inch of a vacant place can generate money by storing goods";
 
 const LowerContainer = () => {
   return (

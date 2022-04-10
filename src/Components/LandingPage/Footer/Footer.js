@@ -31,7 +31,7 @@ const footerData = [
     subComponents: ["help@xyz.com", "(+91) 1234567890", "(+91) 1234567890"],
   },
 ];
-const heading = "Lorem ipsum dolor sit amet consectetur adipiscing elit";
+const heading = "Find a Person who will securely take care of your goods";
 const copyright = "Copyright © 2022 ";
 const socialMediaAssets = [
   {
