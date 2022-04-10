@@ -55,6 +55,7 @@ export const STORAGE_INFO_PAGE_DATA = {
   reviews: "Reviews",
   avgTxt: "/box /week avg",
   pricing: "Pricing:",
+  noData: "No data available",
 };
 
 export const PROFILE_DATA = {

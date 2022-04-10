@@ -183,7 +183,7 @@ const App = () => {
                 <>
                   <Route
                     exact
-                    path="storage/:id"
+                    path="s/:id"
                     element={<StorageInfoPage />}
                   />
                   <Route exact path="profile/*" element={<Profile />} />
@@ -203,7 +203,7 @@ const App = () => {
               )}
               <Route path="*" element={<ErrorPage />} />
             </Routes>
-            {userData && (
+            {/* {userData && (
               <>
                 <PopUp
                   isOpen={popupStates.bookStorage}
@@ -214,7 +214,7 @@ const App = () => {
                   withBorder={false}
                 />
               </>
-            )}
+            )} */}
           </>
         ) : (
           <Preloader />

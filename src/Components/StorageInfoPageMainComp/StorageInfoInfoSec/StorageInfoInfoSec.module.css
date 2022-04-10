@@ -95,3 +95,9 @@
 .PricingTable {
   margin-top: 1.5rem;
 }
+
+.NoData {
+  font-size: var(--font-14);
+  margin-top: 1rem;
+  color: var(--ter-black);
+}

@@ -8,6 +8,7 @@ import Ratings from "../../Ratings/Ratings";
 import Button from "../../Button/Button";
 import Rating from "@mui/material/Rating";
 import notify from "../../../Utils/Helpers/notifyToast";
+import { addReview } from "./../../../Services/storage.service";
 
 function StorageInfoReviewSec({ storageDetails, refreshDataFun }) {
   const userData = useSelector((state) => state.userReducer.userData);
@@ -18,14 +19,31 @@ function StorageInfoReviewSec({ storageDetails, refreshDataFun }) {
 
     try {
       // Add review
+      if (!e.target.elements.ReviewText.value) {
+        throw new Error("Please enter review text");
+      }
+
+      const resp = await addReview(
+        {
+          rating: ratingsValue,
+          storageId: storageDetails.id,
+          review: e.target.elements.ReviewText.value,
+          userName: userData.name,
+        },
+        userData.accessToken
+      );
       if (refreshDataFun) {
         refreshDataFun();
       }
-      notify("Review Added Successfully", "success");
       e.target.elements.ReviewText.value = "";
+      notify("Review Added Successfully", "success");
     } catch (err) {
       console.log(err);
-      notify("Error adding review", "error");
+      if (err.message) {
+        notify(err.message, "error");
+      } else {
+        notify("Error adding review", "error");
+      }
     }
   };
 
@@ -36,9 +54,13 @@ function StorageInfoReviewSec({ storageDetails, refreshDataFun }) {
           {STORAGE_INFO_PAGE_DATA.ratingsAndReviews}
         </h4>
         <div className={styles.ReviewHighlights}>
-          <Ratings rating={storageDetails.ratings.avgRating} />
+          <Ratings
+            rating={
+              storageDetails.ratings ? storageDetails.ratings.avgRating : 0
+            }
+          />
           <span className={styles.NoOfRatings}>
-            {storageDetails.ratings.totalRatings}{" "}
+            {storageDetails.ratings ? storageDetails.ratings.totalRatings : 0}{" "}
             {STORAGE_INFO_PAGE_DATA.reviews}
           </span>
         </div>
@@ -67,7 +89,7 @@ function StorageInfoReviewSec({ storageDetails, refreshDataFun }) {
         />
       </form>
       <div className={styles.ReviewsList}>
-        {storageDetails.ratings.reviews.map((review, index) => {
+        {storageDetails.ratings?.reviews.map((review, index) => {
           return (
             <div
               key={index}
@@ -84,11 +106,11 @@ function StorageInfoReviewSec({ storageDetails, refreshDataFun }) {
                 <Ratings rating={review.rating} />
               </div>
               <div className={styles.ReviewRightSec}>
-                <div className={styles.ReviewText}>{review.message}</div>
+                <div className={styles.ReviewText}>{review.review}</div>
                 <div className={styles.AuthorAndDate}>
-                  {`${review.name} || ${new Date(
-                    review.timestamp
-                  ).toDateString()}`}
+                  {`${review.userName} • ${new Date(
+                    review.createdAt._seconds * 1000
+                  ).toLocaleString()}`}
                 </div>
               </div>
             </div>
