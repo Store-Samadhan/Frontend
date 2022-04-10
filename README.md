@@ -12,7 +12,7 @@ In this high-moving life where we have to move from one place to another for job
 
 ## What does it do?
 
-### User -
+### User
 
 - When a user registers, they will be redirected to the home page.
 - They should enter all the required fields in the profile section.
@@ -20,7 +20,11 @@ In this high-moving life where we have to move from one place to another for job
 - They can review storages by their rating and price.
 - After selecting storage they have to pay price and have access the storage provider details.
 
-### Storage Provider-
+### Storage Provider
+
+- When a storage provider register, th
+  ey required to enter some essential details like PAN number etc for security purposes.
+- They can enter the amount per box and other information like address, phone number etc
 
 ## Development Setup
 
