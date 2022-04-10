@@ -17,7 +17,16 @@ function PersonalInfoSec() {
   const [localeUserData, setLocaleUserData] = useState({ ...userData });
 
   const [tableData, setTableData] = useState([]);
-  const [columsData, setColumsData] = useState([]);
+  const [columsData, setColumsData] = useState([
+    {
+      Header: "Type",
+      accessor: "type",
+    },
+    {
+      Header: "Price per box",
+      accessor: "price",
+    },
+  ]);
 
   const columnNameRef = useRef(null);
   const tagsWrapperRef = useRef(null);
@@ -39,7 +48,7 @@ function PersonalInfoSec() {
 
   const resetData = () => {
     setLocaleUserData({ ...userData });
-    setColumsData(userData.pricing ? [...userData.pricing.columns] : []);
+    // setColumsData(userData.pricing ? [...userData.pricing.columns] : []);
     setTableData(userData.pricing ? [...userData.pricing.data] : []);
     setFiles(
       userData.images
@@ -146,7 +155,7 @@ function PersonalInfoSec() {
                 {PROFILE_DATA.personalInfoSec.tags}
               </h4>
               <div className={styles.Tags} ref={tagsWrapperRef}>
-                {localeUserData.tags.map((tag, index) => {
+                {localeUserData.tags?.map((tag, index) => {
                   return (
                     <input
                       className={styles.Tag}
@@ -171,7 +180,9 @@ function PersonalInfoSec() {
                   onClick={() => {
                     setLocaleUserData({
                       ...localeUserData,
-                      tags: [...localeUserData.tags, ""],
+                      tags: localeUserData.tags
+                        ? [...localeUserData.tags, ""]
+                        : [""],
                     });
                   }}
                   primaryColor="var(--primary-orange)"
@@ -188,7 +199,7 @@ function PersonalInfoSec() {
                 {PROFILE_DATA.personalInfoSec.pricing}
               </h4>
               <div className={styles.PricingTable}>
-                <div className={styles.AddColumn}>
+                {/* <div className={styles.AddColumn}>
                   <input
                     name={PROFILE_DATA.personalInfoSec.addColumn}
                     ref={columnNameRef}
@@ -243,12 +254,11 @@ function PersonalInfoSec() {
                     withIcon
                     IconComp={PlusImg}
                   />
-                </div>
+                </div> */}
                 <EditableTable
                   columns={columsData}
                   data={tableData}
                   setData={setTableData}
-                  setColumsData={setColumsData}
                   updateMyData={updateMyData}
                 />
                 <Button
@@ -334,13 +344,15 @@ function PersonalInfoSec() {
               onClick={() => {
                 setLocaleUserData({
                   ...localeUserData,
-                  addresses: [
-                    ...localeUserData.addresses,
-                    {
-                      address: "",
-                      pincode: "",
-                    },
-                  ],
+                  addresses: localeUserData.addresses
+                    ? [
+                        ...localeUserData.addresses,
+                        {
+                          address: "",
+                          pincode: "",
+                        },
+                      ]
+                    : [{ address: "", pincode: "" }],
                 });
               }}
             />

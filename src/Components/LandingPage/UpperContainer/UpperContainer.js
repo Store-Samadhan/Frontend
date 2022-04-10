@@ -6,7 +6,7 @@ import Logo from "../../../Assets/General/Logo.svg";
 import Button from "./../../Button";
 import { ReactComponent as Arrow } from "../../../Assets/General/Arrow.svg";
 
-const heading = "Maecenas elementum arcu aliquet ultricies.";
+const heading = "Find a Pocket-Friendly place for your goods";
 
 const UpperContainer = () => {
   const navigate = useNavigate();

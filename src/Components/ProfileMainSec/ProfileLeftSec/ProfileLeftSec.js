@@ -1,29 +1,35 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import { ReactComponent as Arrow } from "../../../Assets/Profile/Arrow.svg";
 import styles from "./ProfileLeftSec.module.css";
 
 import { PROFILE_DATA } from "../../../Utils/Constants/StaticData";
 import { UPDATE_USER_DATA } from "./../../../Redux/ActionTypes";
 import Button from "./../../Button/index";
+import { getAuth, signOut } from "firebase/auth";
 
 function ProfileLeftSec() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [, , removeCookie] = useCookies(["token"]);
 
   const userData = useSelector((state) => state.userReducer.userData);
   const dispatch = useDispatch();
 
   const logout = () => {
-    removeCookie("token", { path: "/" });
-    dispatch({
-      type: UPDATE_USER_DATA,
-      data: null,
-    });
-    navigate("/login");
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        console.log("signed out");
+        dispatch({
+          type: UPDATE_USER_DATA,
+          data: null,
+        });
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
