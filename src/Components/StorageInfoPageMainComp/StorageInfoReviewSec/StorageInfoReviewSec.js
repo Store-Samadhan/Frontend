@@ -25,7 +25,7 @@ function StorageInfoReviewSec({ storageDetails, refreshDataFun }) {
 
       await addReview(
         {
-          rating: ratingsValue,
+          rating: parseInt(ratingsValue),
           storageId: storageDetails.id,
           review: e.target.elements.ReviewText.value,
           userName: userData.name,
