@@ -155,7 +155,7 @@ function SignUp() {
 
           <StyledMUIInput
             fullWidth
-            label="Mobile ( Optional )"
+            label="Mobile"
             value={values.Mobile}
             onChange={handleChange}
             name="Mobile"
@@ -248,6 +248,24 @@ function SignUp() {
                 margin="dense"
                 type="url"
                 autoComplete="url"
+                disabled={isDisabled}
+              />
+              <StyledMUIInput
+                fullWidth
+                id="aadharcard"
+                label="Aadhar Card"
+                variant="standard"
+                margin="dense"
+                type="number"
+                disabled={isDisabled}
+              />
+              <StyledMUIInput
+                fullWidth
+                id="PAN"
+                label="PAN Card"
+                variant="standard"
+                margin="dense"
+                type="url"
                 disabled={isDisabled}
               />
             </>
