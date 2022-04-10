@@ -188,7 +188,7 @@ const App = () => {
                     element={<StorageInfoPage />}
                   />
                   <Route exact path="profile/*" element={<Profile />} />
-                  <Route exact path="home" element={<HomePage />} />
+                  <Route exact path="/" element={<HomePage />} />
                 </>
               ) : (
                 <>
