@@ -1,0 +1,80 @@
+.Wrapper {
+  width: 100%;
+  background: var(--white);
+  border-radius: 0.5rem;
+}
+
+.TopSec {
+  padding: 2.5rem 1.2rem;
+  display: flex;
+  grid-gap: 1.5rem;
+  align-items: center;
+}
+
+.ProfileImg {
+  height: 4rem;
+  width: 4rem;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.InfoSec {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0;
+}
+
+.Name {
+  font-size: var(--font-16);
+  color: var(--sec-black);
+  font-weight: 400;
+}
+
+.Email {
+  font-size: var(--font-12);
+  color: var(--ter-black);
+  font-weight: 400;
+}
+
+.Name,
+.Email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.LinksAndButtonsSec {
+  padding: 0.8rem 0rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.BottomItem {
+  --primary-text-color: var(--primary-orange);
+  --background-color: var(--trans-orange-bg);
+
+  color: var(--sec-black);
+  font-size: var(--font-16);
+  font-weight: 400;
+  padding: 0.8rem 1.2rem;
+  width: 100%;
+
+  transition: background 0.2s ease-out, color 0.2s ease-out;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.BottomItemActive,
+.BottomItem:hover {
+  color: var(--primary-text-color);
+  background-color: var(--background-color);
+}
+
+.BackButton {
+  outline: 2px solid var(--border-grey);
+  justify-content: flex-start;
+  padding: 0.9rem 1.5rem;
+}

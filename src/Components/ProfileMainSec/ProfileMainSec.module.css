@@ -1,0 +1,24 @@
+.Wrapper {
+  display: grid;
+  grid-template-columns: 24rem 1fr;
+  grid-gap: 2rem;
+  width: var(--max-width);
+  margin: 0 auto;
+  padding-top: calc(var(--navbar-height) + 2rem);
+  padding-bottom: 4rem;
+  min-height: calc(100vh - 5rem);
+}
+
+.LeftSec {
+  /* width: 30.5rem; */
+  width: 100%;
+  height: fit-content;
+}
+
+.RightSec {
+  width: 100%;
+  background: var(--white);
+  border-radius: 0.5rem;
+  border: 1px solid var(--sec-grey);
+  overflow: hidden;
+}

@@ -1,0 +1,201 @@
+.Wrapper {
+  width: 100%;
+}
+
+.TopSec {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 6rem;
+}
+
+.Title {
+  font-size: var(--font-20);
+  color: var(--primary-black);
+  font-weight: 400;
+}
+.Buttons {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  grid-gap: 0;
+}
+.BottomSec {
+  width: 100%;
+  padding: 2rem 2.5rem;
+}
+.KeyValuePairs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5rem;
+}
+
+.KeyValuePair {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 20rem 1fr;
+  align-items: center;
+}
+
+.Key {
+  font-size: var(--font-16);
+  color: var(--ter-black);
+  font-weight: 400;
+}
+
+.Value {
+  width: 30rem;
+  font-size: var(--font-16);
+  color: var(--sec-black);
+  font-weight: 400;
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--sec-grey);
+}
+
+.Value:focus {
+  outline: 2px solid var(--primary-orange);
+}
+
+.PickupAddressPair {
+  align-items: start;
+  margin-top: 1rem;
+}
+.PickupAddress {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5rem;
+}
+
+.AddressSec {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1.5rem;
+}
+
+.AddressTitle {
+  font-size: var(--font-18);
+  color: var(--primary-black);
+  font-weight: 500;
+}
+
+.AddressListWrapper {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1rem;
+}
+
+.Address {
+  width: 43.5rem;
+  height: fit-content;
+  border-radius: 1rem;
+  border: 1px solid var(--sec-grey);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1rem;
+}
+
+.AddressLine,
+.Pincode {
+  font-size: var(--font-16);
+  font-weight: 400;
+  color: var(--sec-black);
+  outline: none;
+  border: none;
+  resize: none;
+  background: #f0f0f0;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.7rem;
+}
+
+.AddressLine:focus,
+.Pincode:focus {
+  outline: 2px solid var(--primary-orange) !important;
+}
+.Pincode {
+  font-weight: 400;
+}
+
+.AddAddressBtn {
+  font-weight: 400;
+  font-size: var(--font-14);
+  outline: 1px solid var(--sec-grey);
+  padding: 0.8rem 1.5rem;
+}
+
+.FileInputWrapper {
+  width: 30rem;
+  margin-bottom: 2rem;
+}
+
+.PricingSec {
+  margin-top: 2.5rem;
+  grid-gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.AddRowBtn,
+.AddColumnBtn {
+  font-weight: 400;
+  font-size: var(--font-16);
+  outline: 1px solid var(--sec-grey);
+  padding: 0.8rem 1.5rem;
+}
+
+.AddRowBtn {
+  margin-top: 1rem;
+}
+
+.AddColumn {
+  display: flex;
+  align-items: center;
+  grid-gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.AddColumnInput {
+  font-weight: 400;
+  font-size: var(--font-16);
+  border: 1px solid var(--sec-grey);
+  padding: 0.6rem 1rem;
+  border-radius: 1rem;
+  height: 100%;
+}
+
+.TagsSec {
+  margin-top: 2.5rem;
+  grid-gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.Tags {
+  display: flex;
+  width: 60rem;
+  flex-wrap: wrap;
+  grid-gap: 0.8rem;
+}
+
+.Tag {
+  padding: 0.9rem 1.2rem;
+  color: var(--ter-black);
+  border: 1px solid var(--ter-black);
+  border-radius: 0.8rem;
+  text-align: center;
+  font-size: var(--font-14);
+}
+
+.AddTagWrapper {
+  padding: 0.9rem 1.2rem;
+  font-size: var(--font-14);
+}
+
+.TagPlusIcon path {
+  stroke: var(--primary-orange);
+}
