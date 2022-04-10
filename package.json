@@ -17,6 +17,7 @@
     "filepond-plugin-image-preview": "^4.6.11",
     "firebase": "^9.6.1",
     "indian-cities-database": "^1.0.5",
+    "indian-pincode-database": "^1.0.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-filepond": "^7.1.1",

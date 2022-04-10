@@ -6,22 +6,23 @@ import {
   valueSelectStylesNormal,
   filterSelectStylesNormal,
 } from "../helper/ColorStyles";
-import Select from "react-select";
+import Select from "react-select/creatable";
+import CreatableSelect from "react-select/creatable";
 import SearchIcon from "@mui/icons-material/Search";
 
-const SearchComponent = ({ selectOptions, isLightTheme = true }) => {
-  const [currentFilterOption, setCurrentFilterOption] = useState(null);
+const SearchComponent = ({
+  selectOptions,
+  isLightTheme = true,
+  handleClickFilter,
+}) => {
+  const [currentFilterOption, setCurrentFilterOption] = useState(
+    selectOptions[0].filterName
+  );
   const [currentFilterArray, setCurrentFilterArray] = useState([]);
 
-  useEffect(() => {
-    setCurrentFilterOption(selectOptions[0].filterName);
-    setCurrentFilterArray(selectOptions[0].filterValue);
-  }, [selectOptions]);
-
-  // useEffect(() => {
-  //   console.log(currentFilterOption);
-  //   console.log(currentFilterArray);
-  // }, [currentFilterOption, currentFilterArray]);
+  const handleClick = () => {
+    handleClickFilter(currentFilterArray, currentFilterOption);
+  };
 
   return (
     <div className={styles.WrapperWrapper}>
@@ -48,15 +49,20 @@ const SearchComponent = ({ selectOptions, isLightTheme = true }) => {
             },
           })}
           onChange={(newValue, action) => {
-            setCurrentFilterOption(newValue.value);
+            setCurrentFilterOption({
+              value: newValue.value,
+              label: newValue.label,
+            });
+            setCurrentFilterArray([]);
           }}
+          value={currentFilterOption}
         />
 
-        <Select
+        <CreatableSelect
           isMulti
           name="bookingSlots"
           options={selectOptions
-            .filter((item) => item.filterName === currentFilterOption)[0]
+            .filter((item) => item.filterName === currentFilterOption?.label)[0]
             ?.filterValue.map((item) => {
               return { value: item, label: item };
             })}
@@ -74,8 +80,13 @@ const SearchComponent = ({ selectOptions, isLightTheme = true }) => {
             },
           })}
           onChange={(newValue, action) => {
-            setCurrentFilterArray(newValue.map((item) => item.value));
+            setCurrentFilterArray(
+              newValue.map((item) => {
+                return { value: item.value, label: item.label };
+              }) || []
+            );
           }}
+          value={currentFilterArray}
         />
       </div>
       <div
@@ -85,6 +96,7 @@ const SearchComponent = ({ selectOptions, isLightTheme = true }) => {
             ? "var(--primary-orange)"
             : "var(--pure-white)",
         }}
+        onClick={handleClick}
       >
         <SearchIcon
           fontSize="large"
