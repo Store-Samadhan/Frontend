@@ -13,7 +13,8 @@ export const paymentInitialization = async (
   amount,
   phone,
   storageType,
-  duration
+  duration,
+  userName
 ) => {
   try {
     const { data } = await axios.post(
@@ -25,6 +26,7 @@ export const paymentInitialization = async (
         phone,
         storageType,
         duration,
+        userName
       },
       {
         headers: {

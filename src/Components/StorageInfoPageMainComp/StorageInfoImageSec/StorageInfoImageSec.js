@@ -21,8 +21,6 @@ function StorageInfoImageSec({ images, googlEmbedURL }) {
         type: UPDATE_BOOK_STORAGE_POPUP_STATE,
         value: true,
       });
-
-      notify("Successfully booked storage", "success");
     } catch (err) {
       console.log(err);
       notify("Failed to book storage", "error");

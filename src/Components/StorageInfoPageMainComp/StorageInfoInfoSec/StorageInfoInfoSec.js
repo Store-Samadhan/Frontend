@@ -39,7 +39,16 @@ function StorageInfoInfoSec({ storageDetails }) {
       </div>
       <div className={styles.AveragePrice}>
         <span className={styles.AvgPrice}>
-          {"₹" + (storageDetails.avgPrice ? storageDetails.avgPrice : "-")}
+          {"₹" +
+            (storageDetails.pricing.data
+              ? parseInt(
+                storageDetails.pricing.data
+                    .map((item) => {
+                      return item.price;
+                    })
+                    .reduce((acc, v, i, a) => acc + v / a.length, 0)
+                )
+              : "-")}
         </span>
         <span className={styles.AvgPriceTxt}>
           {STORAGE_INFO_PAGE_DATA.avgTxt}

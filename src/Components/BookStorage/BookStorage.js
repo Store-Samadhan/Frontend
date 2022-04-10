@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "@mui/material/Select";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import MenuItem from "@mui/material/MenuItem";
 import { styled } from "@mui/material/styles";
 
@@ -8,64 +8,56 @@ import styles from "./BookStorage.module.css";
 import { BOOK_STORAGE_FACILITY_DATA } from "../../Utils/Constants/StaticData";
 import Button from "../Button";
 import notify from "../../Utils/Helpers/notifyToast";
+import {
+  paymentInitialization,
+  payementService,
+} from "./../../Services/payment.service";
+import { UPDATE_BOOK_STORAGE_POPUP_STATE } from "../../Redux/ActionTypes";
+import { parse } from "filepond";
 
-function BookStorage({
-  refreshDataFunction,
-  storeData = {
-    name: "Stark Cold Food Storing facility",
-    pricing: {
-      columns: [
-        {
-          Header: "Boxes",
-          accessor: "boxes",
-        },
-        {
-          Header: "Cold",
-          accessor: "cold",
-        },
-        {
-          Header: "Normal",
-          accessor: "normal",
-        },
-      ],
-      data: [
-        {
-          boxes: "1-10",
-          cold: 150,
-          normal: 140,
-        },
-        {
-          boxes: "11-20",
-          cold: 145,
-          normal: 130,
-        },
-        {
-          boxes: "21-50",
-          cold: 140,
-          normal: 120,
-        },
-        {
-          boxes: "51-100",
-          cold: 135,
-          normal: 110,
-        },
-        {
-          boxes: "101-500",
-          cold: 130,
-          normal: 100,
-        },
-      ],
-    },
-  },
-}) {
+function BookStorage({ storeData }) {
+  const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer.userData);
 
   const [formData, setFormData] = React.useState({
-    pickUpAddress: "",
-    storageType: "",
+    storageType: storeData.pricing.data
+      ? storeData.pricing.data[0]
+      : {
+          type: "",
+          price: 0,
+        },
     boxes: 1,
     duration: 1,
   });
+
+  const booksStorageFun = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await paymentInitialization(
+        userData.accessToken,
+        storeData.id,
+        parseInt(formData.boxes),
+        formData.storageType.price * formData.duration * formData.boxes,
+        parseInt(storeData.phone),
+        formData.storageType.type,
+        parseInt(formData.duration),
+        userData.name
+      );
+      const payementData = await payementService(
+        300,
+        data.orderId,
+        data.bookingId,
+        userData.accessToken,
+        userData
+      );
+      dispatch({
+        type: UPDATE_BOOK_STORAGE_POPUP_STATE,
+        value: false,
+      });
+    } catch (err) {
+      notify("Failed to book storage", "error");
+    }
+  };
 
   return (
     <div className={styles.Wrapper}>
@@ -78,42 +70,7 @@ function BookStorage({
             </span>
             <span className={styles.Value}>{storeData.name}</span>
           </div>
-          <div className={styles.KeyValueWrapper}>
-            <label className={styles.Key}>
-              {BOOK_STORAGE_FACILITY_DATA.pickupAddress}
-            </label>
-            <Select
-              sx={{ minWidth: 120 }}
-              value={formData.pickUpAddress}
-              onChange={(e) => {
-                setFormData({ ...formData, pickUpAddress: e.target.value });
-              }}
-              style={
-                {
-                  // width: "23rem",
-                  // fontSize: "1.6rem",
-                  // paddingLeft: "2rem",
-                  // paddingRight: "2rem",
-                  // borderRadius: "1rem",
-                  // borderColor: "#cccccc",
-                }
-              }
-              className={styles.Select}
-            >
-              {userData.addresses?.map((address, index) => (
-                <MenuItem
-                  value={address.address + " " + address.pincode}
-                  key={index}
-                  style={{
-                    fontSize: "1.6rem",
-                  }}
-                  className={styles.MenuItem}
-                >
-                  {address.address}
-                </MenuItem>
-              ))}
-            </Select>
-          </div>
+
           <div className={styles.KeyValueWrapper}>
             <label className={styles.Key}>
               {BOOK_STORAGE_FACILITY_DATA.storageType}
@@ -126,16 +83,16 @@ function BookStorage({
               }}
               className={styles.Select}
             >
-              {storeData.pricing.columns?.map((storageType, index) => (
+              {storeData.pricing.data?.map((storageType, index) => (
                 <MenuItem
-                  value={storageType.accessor}
+                  value={storageType}
                   key={index}
                   style={{
                     fontSize: "1.6rem",
                   }}
-                  className={styles.MenuItem}
+                  className={styles.type}
                 >
-                  {storageType.Header}
+                  {storageType.type}
                 </MenuItem>
               ))}
             </Select>
@@ -188,7 +145,7 @@ function BookStorage({
                 {BOOK_STORAGE_FACILITY_DATA.chargePerBox}
               </span>
               <span className={styles.ReceiptValue}>
-                {storeData.chargePerBox}
+                {formData.storageType.price}
               </span>
             </div>
             <div className={styles.ReceiptKeyValueWrapper}>
@@ -209,7 +166,9 @@ function BookStorage({
                 {BOOK_STORAGE_FACILITY_DATA.total}
               </span>
               <span className={styles.ReceiptValue}>
-                {storeData.chargePerBox * formData.duration * formData.boxes}
+                {formData.storageType.price *
+                  formData.duration *
+                  formData.boxes}
               </span>
             </div>
           </div>
@@ -218,10 +177,11 @@ function BookStorage({
           name={
             BOOK_STORAGE_FACILITY_DATA.bookFor +
             " " +
-            10 * formData.duration * formData.boxes
+            formData.storageType.price * formData.duration * formData.boxes
           }
           primaryColor={`var(--primary-orange)`}
           fullWidth
+          onClick={booksStorageFun}
         />
       </form>
     </div>

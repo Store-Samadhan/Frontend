@@ -68,7 +68,7 @@
 .Select {
   width: 23rem;
   font-size: var(--font-16) !important;
-  padding: 0rem 2rem;
+  /* padding: 0rem 2rem; */
   border-radius: 1rem !important;
   outline-color: #cccccc;
 }
