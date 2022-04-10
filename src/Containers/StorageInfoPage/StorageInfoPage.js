@@ -101,6 +101,7 @@ function StorageInfoPage() {
   }, [storageId]);
 
   const getStorageDetails = async () => {
+    setStorageDetails(null);
     try {
       const tempSTorageData = await fetchStorageInfoById(
         storageId,

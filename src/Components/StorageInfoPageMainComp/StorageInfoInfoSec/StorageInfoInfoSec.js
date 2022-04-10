@@ -20,18 +20,18 @@ function StorageInfoInfoSec({ storageDetails }) {
         <div div className={styles.ReviewsSec}>
           <Ratings
             rating={
-              storageDetails.ratings ? storageDetails.ratings.avgRating : 0
+              storageDetails.ratings ? storageDetails.ratings.avgRating : "0"
             }
           />
 
           <span className={styles.NoOfRatings}>
-            {storageDetails.ratings ? storageDetails.ratings.totalRatings : 0}{" "}
+            {storageDetails.ratings ? storageDetails.ratings.totalRatings : "0"}{" "}
             {STORAGE_INFO_PAGE_DATA.reviews}
           </span>
         </div>
       </div>
       <div className={styles.TagsList}>
-        {storageDetails.tags.map((tag, index) => (
+        {storageDetails.tags?.map((tag, index) => (
           <span key={index} className={styles.Tag}>
             {tag}
           </span>
