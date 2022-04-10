@@ -1,0 +1,20 @@
+.Wrapper {
+  margin: 0 auto;
+  width: var(--max-width);
+  /* width: max(var(--max-width), 70%); */
+  border-top: 1px solid var(--primary-orange);
+  height: 6.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Text {
+  font-size: var(--font-16);
+  color: var(--sec-black);
+  font-weight: 600;
+}
+
+.Link {
+  color: var(--primary-orange);
+}
