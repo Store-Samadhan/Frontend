@@ -1,0 +1,37 @@
+.Wrapper {
+  width: 100%;
+  padding: 1.5rem calc((50% - (var(--max-width) / 2)));
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  z-index: 15;
+  background-color: var(--pure-white);
+}
+
+.LeftSec {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.Logo {
+  height: 2.5rem;
+  width: fit-content;
+}
+
+.LinkButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 0.7rem;
+  width: fit-content;
+}
+
+.LinkButtonText {
+  text-decoration: none;
+  color: var(--primary-black);
+  font-size: var(--font-12);
+  font-weight: 600;
+}

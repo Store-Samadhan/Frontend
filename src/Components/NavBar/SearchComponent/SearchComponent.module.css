@@ -1,0 +1,16 @@
+.WrapperWrapper {
+  display: flex;
+  gap: 0.8rem;
+}
+.Wrapper {
+  display: flex;
+}
+.IconsWrapper {
+  width: 6rem;
+  height: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  cursor: pointer;
+}
