@@ -1,0 +1,116 @@
+.Wrapper {
+  width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 2.5rem;
+}
+
+.UpperSec {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  grid-gap: 3.4rem;
+  border-bottom: 1px solid var(--sec-grey);
+  padding: 0 1.5rem;
+  padding-bottom: 1.3rem;
+}
+
+.Title {
+  font-size: var(--font-24);
+  color: var(--primary-black);
+  font-weight: 500;
+}
+
+.ReviewHighlights {
+  font-size: var(--font-14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  grid-gap: 1rem;
+}
+
+.NoOfRatings {
+  font-size: var(--font-20);
+  color: var(--ter-black);
+  font-weight: 500;
+}
+
+.AddReviewSec {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1.2rem;
+  padding: 0 1.5rem;
+}
+
+.ReviewTextArea {
+  outline: none;
+  border: none;
+  resize: none;
+  width: 100%;
+  font-size: var(--font-16);
+  color: var(--sec-black);
+  outline: 1px solid var(--sec-black);
+  border-radius: 1rem;
+  padding: 1rem 1.2rem;
+  transition: box-shadow 0.15s ease-out;
+}
+.ReviewStars {
+  width: fit-content;
+  transform: scale(1.4);
+  transform-origin: 0% 50%;
+  margin-bottom: 0.5rem;
+}
+
+.ReviewTextArea:active,
+.ReviewTextArea:focus-within {
+  box-shadow: 0px 0px 0px 4px rgba(255, 179, 16, 0.2);
+  outline: 1px solid var(--primary-orange);
+}
+
+.AddReviewBtn {
+  border-radius: 1rem;
+  padding: 1rem 3rem;
+  font-size: var(--font-16);
+}
+
+.ReviewsList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1.2rem;
+  padding: 0 1.5rem;
+  margin-top: 1rem;
+}
+
+.Review {
+  width: 100%;
+  display: flex;
+  grid-gap: 1.4rem;
+  border-bottom: 1px solid var(--sec-grey);
+  padding-bottom: 1.2rem;
+}
+
+.ReviewLeftSec {
+  width: fit-content;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+}
+
+.ReviewRightSec {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1.2rem;
+  font-size: var(--font-16);
+}
+
+.ReviewText {
+  color: var(--sec-black);
+  font-weight: 400;
+}
+
+.AuthorAndDate {
+  color: var(--ter-black);
+  font-weight: 400;
+}
