@@ -17,7 +17,6 @@
     "filepond-plugin-image-preview": "^4.6.11",
     "firebase": "^9.6.1",
     "react": "^17.0.1",
-    "react-cookie": "^4.1.1",
     "react-dom": "^17.0.1",
     "react-filepond": "^7.1.1",
     "react-imask": "^6.2.2",
