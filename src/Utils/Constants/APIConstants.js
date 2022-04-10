@@ -1,5 +1,5 @@
 export const BASE_URL =
-  "https://store-samadhan-backend.centralindia.cloudapp.azure.com/";
+  "https://store-samadhan-backend.centralindia.cloudapp.azure.com";
 export const CLOUD_URL =
   "http://storesamadhan-storage.centralindia.cloudapp.azure.com/images";
 export const AUTH_URL = `${BASE_URL}/auth`;
