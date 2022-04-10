@@ -181,11 +181,7 @@ const App = () => {
             <Routes>
               {userData != null ? (
                 <>
-                  <Route
-                    exact
-                    path="s/:id"
-                    element={<StorageInfoPage />}
-                  />
+                  <Route exact path="s/:id" element={<StorageInfoPage />} />
                   <Route exact path="profile/*" element={<Profile />} />
                   <Route exact path="/" element={<HomePage />} />
                 </>
