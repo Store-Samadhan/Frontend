@@ -7,14 +7,17 @@ export const fetchFilteredStorage = async (
   accessToken
 ) => {
   try {
-    const { data } = await axios.get(
-      `${GET_FILTERED_STORAGE_URL}?filter=${filter}&values=${filterValue}`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const { data } = await axios.get(`${GET_FILTERED_STORAGE_URL}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: filter
+        ? {
+            filter: filter,
+            values: filterValue,
+          }
+        : {},
+    });
     return data;
   } catch (err) {
     console.log(err);
