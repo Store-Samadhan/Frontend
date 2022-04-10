@@ -12,7 +12,7 @@
 .Text {
   font-size: var(--font-16);
   color: var(--sec-black);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .Link {
