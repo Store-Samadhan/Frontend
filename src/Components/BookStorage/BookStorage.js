@@ -100,7 +100,7 @@ function BookStorage({
               }
               className={styles.Select}
             >
-              {userData.addresses.map((address, index) => (
+              {userData.addresses?.map((address, index) => (
                 <MenuItem
                   value={address.address + " " + address.pincode}
                   key={index}
@@ -126,7 +126,7 @@ function BookStorage({
               }}
               className={styles.Select}
             >
-              {storeData.pricing.columns.map((storageType, index) => (
+              {storeData.pricing.columns?.map((storageType, index) => (
                 <MenuItem
                   value={storageType.accessor}
                   key={index}
