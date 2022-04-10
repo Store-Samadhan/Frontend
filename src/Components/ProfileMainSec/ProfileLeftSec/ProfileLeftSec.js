@@ -53,7 +53,7 @@ function ProfileLeftSec() {
         />
         <div className={styles.InfoSec}>
           <h4 className={styles.Name}>{userData.name}</h4>
-          <h5 className={styles.Email}>{userData.email}</h5>
+          <span className={styles.Email}>{userData.email}</span>
         </div>
       </div>
 
